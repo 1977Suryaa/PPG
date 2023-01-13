@@ -1,0 +1,25 @@
+body
+{
+ background-image: url("5.jpg");
+ background-repeat: no-repeat;
+ background-size: cover;
+}
+div{
+    width: 100%;
+    
+}
+div h1{
+    
+    display:inline;
+    float:left;
+    
+}
+div button{
+    float:right;
+}
+.footer{
+    width: 100%;
+    bottom: 0px;
+    position: fixed;
+    
+}
