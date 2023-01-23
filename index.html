@@ -15,22 +15,45 @@
 
     </head>
     <body>
+        <div class="footer btn btn-primary">
+            <h5>Developed by D.A.Suryaa</h5>
+        </div>
         <center>
             <div class="btn btn-warning">
                 <h1>Ping Pong Game (PPG)</h1>
-
-                <button class="btn btn-success ">instruction </button>
+                
+                <button class="btn btn-success " data-toggle="modal" data-target="#my_model">instruction </button>
             </div>
             <button class="btn btn-danger">start</button>
+            <button class="btn btn-success">Restart</button>
             <h1 class="btn btn-warning"></h1>
             <div id="canvas">
 
 
             </div>
-            <button class="btn btn-success">Restart</button>
-            <div class="footer btn btn-primary">
-                <h5>Developed by D.A.Suryaa</h5>
+            
+            
+            <div class="modal" id="my_model">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="btn btn-success">Instruction</h1>
+                            <button class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                            <div class="modal-body">
+                                <ol>
+                                    <li>First keep your laptop screen straight</li>
+                                    <li>Move yourself approximately 3-4 feet away from the laptop</li>
+                                    <li>Move your right wrist in an ascending and decending manner, a red dot should appear on your right wrist</li>
+                                    <li>Now press the play button, and again move yourself 3-4 feet away from laptop</li>
+                                    <li>The red paddel is your paddel, that will move as per the movement of your right wrist</li>
+                                </ol>
+                            </div>
+                        
+                    </div>
+                </div>
             </div>
+            
             
         </center>
 
