@@ -1,4 +1,5 @@
-
+noseX = 0;
+noseY = 0;
 /*created by prashant shukla */
 
 var paddle2 =10,paddle1=10;
@@ -23,12 +24,21 @@ var ball = {
 
 function setup(){
   var canvas =  createCanvas(700,600);
+  canvas.parent("canvas")
+  webcam=createCapture(VIDEO)
+  webcam.size(700,600)
+  webcam.hide()
+  posenet=ml5.poseNet(webcam,modelLoaded)
+    posenet.on("pose",gotpose)
+
+
 }
 
 
 function draw(){
-
+ 
  background(0); 
+ image(webcam,0,0,700,600)
 
  fill("black");
  stroke("black");
@@ -65,6 +75,7 @@ function draw(){
    
    //function move call which in very important
     move();
+
 }
 
 
@@ -162,4 +173,15 @@ function paddleInCanvas(){
   if(mouseY < 0){
     mouseY =0;
   }  
+}
+function modelLoaded(){
+	console.log("hello,I am ready to work")
+  }
+  function gotpose(results){
+	if(results){
+	  console.log(results)
+	  noseX=results[0].pose.nose.x
+	  noseY=results[0].pose.nose.y
+	  console.log(noseX,noseY)
+	}
 }
