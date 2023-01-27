@@ -1,5 +1,6 @@
-noseX = 0;
-noseY = 0;
+right_wrist_X=""
+right_wrist_Y=""
+score_right_wrist=""
 /*created by prashant shukla */
 
 var paddle2 =10,paddle1=10;
@@ -29,53 +30,60 @@ function setup(){
   webcam.size(700,600)
   webcam.hide()
   posenet=ml5.poseNet(webcam,modelLoaded)
-    posenet.on("pose",gotpose)
+  posenet.on("pose",gotpose)
 
 
 }
 
 
 function draw(){
- 
- background(0); 
- image(webcam,0,0,700,600)
-
- fill("black");
- stroke("black");
- rect(680,0,20,700);
-
- fill("black");
- stroke("black");
- rect(0,0,20,700);
- 
-   //funtion paddleInCanvas call 
-   paddleInCanvas();
- 
-   //left paddle
-   fill(250,0,0);
-    stroke(0,0,250);
-    strokeWeight(0.5);
-   paddle1Y = mouseY; 
-   rect(paddle1X,paddle1Y,paddle1,paddle1Height,100);
-   
-   
-    //pc computer paddle
-    fill("#FFA500");
-    stroke("#FFA500");
-   var paddle2y =ball.y-paddle2Height/2;  rect(paddle2Y,paddle2y,paddle2,paddle2Height,100);
+  if(status=="loaded"){
     
-    //function midline call
-    midline();
-    
-    //funtion drawScore call 
-   drawScore();
+   background(0); 
+   image(webcam,0,0,700,600)
+  
+   fill("black");
+   stroke("black");
+   rect(680,0,20,700);
+  
+   fill("black");
+   stroke("black");
+   rect(0,0,20,700);
    
-   //function models call  
-   models();
+     //funtion paddleInCanvas call 
+     paddleInCanvas();
    
-   //function move call which in very important
-    move();
-
+     //left paddle
+     fill(250,0,0);
+      stroke(0,0,250);
+      strokeWeight(0.5);
+     paddle1Y = mouseY; 
+     rect(paddle1X,paddle1Y,paddle1,paddle1Height,100);
+     if(score_right_wrist>0.5){
+      fill("red")
+      stroke("green")
+      circle(right_wrist_X,right_wrist_Y,30)
+    }
+     
+      //pc computer paddle
+      fill("#FFA500");
+      stroke("#FFA500");
+     var paddle2y =ball.y-paddle2Height/2;  rect(paddle2Y,paddle2y,paddle2,paddle2Height,100);
+      
+      //function midline call
+      midline();
+      
+      //funtion drawScore call 
+     drawScore();
+     
+     //function models call  
+     models();
+     
+     //function move call which in very important
+      move();
+  
+  }
+  
 }
 
 
@@ -180,8 +188,14 @@ function modelLoaded(){
   function gotpose(results){
 	if(results){
 	  console.log(results)
-	  noseX=results[0].pose.nose.x
-	  noseY=results[0].pose.nose.y
-	  console.log(noseX,noseY)
+    right_wrist_X=results[0].pose.rightWrist.x
+    right_wrist_Y=results[0].pose.rightWrist.y
+    score_right_wrist=results[0].pose.keypoints[10].score
+	  console.log(score_right_wrist)
 	}
+}
+function start(){
+  status="loaded"
+  document.getElementById("hhh").innerHTML="game is loading"
+
 }
